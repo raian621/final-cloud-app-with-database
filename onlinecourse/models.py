@@ -130,6 +130,7 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=100)
     is_correct = models.BooleanField(default=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     
 
 # <HINT> The submission model

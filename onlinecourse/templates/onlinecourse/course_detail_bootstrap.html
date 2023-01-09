@@ -93,9 +93,11 @@
                         </div>
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
             </form> -->
-            {% if user.is_authenticated %}
+
+            <button class="btn btn-link" data-toggle="collapse" data-target="#exam">Exam</button>
             <div id="exam" class="collapse">
-                <form id="questionform" action="{% onlinecourse:submit %}" method="post">
+                {% if user.is_authenticated %}
+                <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="post">
                     {% for question in course.question_set.all %}
                     <div class="card mt-1">
                         <div class="card-header"><h5>{{ question.question_text }}</h5></div>
@@ -105,8 +107,8 @@
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="checkbox" name="choice_{{choice.id}}"
-                                           class="form-check-input" id="{{choice.id}}"
-                                           value="{{choice.id}}">{{ choice.choice_text }}
+                                    class="form-check-input" id="{{choice.id}}"
+                                    value="{{choice.id}}">{{ choice.choice_text }}</input>
                                 </label>
                             </div>
                             {% endfor %}
